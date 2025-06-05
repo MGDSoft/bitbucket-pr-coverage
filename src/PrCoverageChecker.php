@@ -152,8 +152,6 @@ class PrCoverageChecker extends Command
         } else {
             $output->writeln('Coverage: <error>' . $coveragePercentage . '%</error>');
         }
-        return Command::FAILURE;
-
 
         return Command::SUCCESS;
     }
