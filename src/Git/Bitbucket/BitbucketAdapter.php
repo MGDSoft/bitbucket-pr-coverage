@@ -275,7 +275,7 @@ class BitbucketAdapter implements GitAPIAdapterInterface
             "title" => "Coverage report",
             "details" => "Coverage report of the modified/created code",
             "report_type" => "COVERAGE",
-            "result" => "FAILED",
+            "result" => $coveragePercentage <= 80 ? "FAILED" : "PASSED",
             "data" => [
                 [
                     "type" => "PERCENTAGE",
