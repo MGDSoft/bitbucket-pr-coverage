@@ -69,7 +69,6 @@ class BitbucketAdapter implements GitAPIAdapterInterface
         array $modifiedLinesUncovered,
         int $pullRequestId
     ): void {
-        echo "ASDASDASDASDASDASDASDASDASDASDASDASDASDASDASD\n";
         $commitId = $this->getCommitIdFromPullRequest($pullRequestId);
         $this->addCoverageComment($coveragePercentage, $modifiedLinesUncovered, $pullRequestId, $commitId);
     }
@@ -167,7 +166,6 @@ class BitbucketAdapter implements GitAPIAdapterInterface
         array $modifiedLinesUncovered,
         int $pullRequestId
     ): void {
-        echo "aaa";
         $commitId = $this->getCommitIdFromPullRequest($pullRequestId);
         $this->deleteOutdatedCoverageReports($commitId);
         $idReport = $this->createReport($coveragePercentage, $commitId);
