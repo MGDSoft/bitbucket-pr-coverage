@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1709502639">
+  <project timestamp="1709502639">
+    <file name="/app/src/Dummy.php">
+      <class name="Orbeji\Test\Dummy" namespace="global">
+        <metrics complexity="5" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="6" elements="9" coveredelements="7"/>
+      </class>
+      <line num="9" type="method" name="fibonacci" visibility="public" complexity="2" crap="2" count="1"/>
+      <line num="10" type="stmt" count="1"/>
+      <line num="11" type="stmt" count="1"/>
+      <line num="13" type="stmt" count="1"/>
+      <line num="17" type="method" name="calculateHypotenuse" visibility="public" complexity="3" crap="3.14" count="1"/>
+      <line num="19" type="stmt" count="0"/>
+      <line num="20" type="stmt" count="0"/>
+      <line num="24" type="stmt" count="1"/>
+      <line num="26" type="stmt" count="0"/>
+      <metrics loc="28" ncloc="26" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="6" elements="9" coveredelements="7"/>
+    </file>
+    <metrics files="1" loc="28" ncloc="26" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="6" elements="9" coveredelements="7"/>
+  </project>
+</coverage>

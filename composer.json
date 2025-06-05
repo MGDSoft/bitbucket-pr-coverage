@@ -1,0 +1,56 @@
+{
+  "name": "shopadvizor/phpunit-pr-coverage-check",
+  "version": "0.0.0",
+  "description": "Check the code coverage of a PR using the clover report of phpunit",
+  "license": "MIT",
+  "keywords": [
+    "PR",
+    "Pull Request",
+    "Testing",
+    "PHP",
+    "phpunit",
+    "Unittest",
+    "CI",
+    "Code coverage"
+  ],
+  "require": {
+    "php": "^8.3",
+    "ext-json": "*",
+    "ext-simplexml": "*",
+    "composer-runtime-api": "^2.2",
+    "mashape/unirest-php": "^3.0.4",
+    "ptlis/diff-parser": "^1.1.0",
+    "symfony/console": "^5.4.46",
+    "symfony/polyfill-php83": "^1.31",
+    "symfony/polyfill-uuid": "^1.31.0"
+  },
+  "require-dev": {
+    "nyholm/symfony-bundle-test": "^3.0",
+    "phpstan/phpstan": "^1.12.10",
+    "phpunit/phpunit": "^10.5",
+    "roave/security-advisories": "dev-latest",
+    "rregeer/phpunit-coverage-check": "^0.3.1",
+    "squizlabs/php_codesniffer": "^3.10.3",
+    "symfony/framework-bundle": "^5.4.45",
+    "symfony/var-dumper": "^5.4.46",
+    "webmozart/assert": "^1.11.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Orbeji\\PrCoverageChecker\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Orbeji\\PrCoverageChecker\\": "tests"
+    }
+  },
+  "bin": [
+    "bin/pr-coverage-check"
+  ],
+  "config": {
+    "allow-plugins": {
+      "ergebnis/composer-normalize": true
+    }
+  }
+}

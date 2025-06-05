@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1712175710">
+  <project timestamp="1712175710">
+    <package name="Orbeji\Test">
+      <file name="/app/src/Dummy.php">
+        <class name="Orbeji\Test\Dummy" namespace="Orbeji\Test">
+          <metrics complexity="4" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="3" elements="10" coveredelements="4"/>
+        </class>
+        <line num="7" type="method" name="test" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="8" type="stmt" count="0"/>
+        <line num="9" type="stmt" count="0"/>
+        <line num="11" type="method" name="dummy" visibility="public" complexity="1" crap="2.00" count="0"/>
+        <line num="12" type="stmt" count="0"/>
+        <line num="13" type="stmt" count="0"/>
+        <line num="15" type="method" name="fibonacci" visibility="public" complexity="2" crap="2" count="1"/>
+        <line num="16" type="stmt" count="1"/>
+        <line num="17" type="stmt" count="1"/>
+        <line num="19" type="stmt" count="1"/>
+        <metrics loc="21" ncloc="21" classes="1" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="3" elements="10" coveredelements="4"/>
+      </file>
+    </package>
+    <metrics files="1" loc="21" ncloc="21" classes="1" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="3" elements="10" coveredelements="4"/>
+  </project>
+</coverage>

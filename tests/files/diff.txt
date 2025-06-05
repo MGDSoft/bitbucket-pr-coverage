@@ -1,0 +1,235 @@
+diff --git a/bitbucket-pipelines.yml b/bitbucket-pipelines.yml
+index 235f744..95481b6 100644
+--- a/bitbucket-pipelines.yml
++++ b/bitbucket-pipelines.yml
+@@ -1,12 +1,19 @@
++
+ pipelines:
+   pull-requests:
+-    feature/*:
+-      - step:
+-          name: Build for feature branch pull request
+-          script:
+-            - composer install
+-            -  vendor/bin/phpunit --coverage-clover clover.xml
+-            - git diff ${BITBUCKET_PR_DESTINATION_BRANCH}...${BITBUCKET_BRANCH} > diff.txt
+-            - vendor/bin/pr-coverage-check check clover.xml 100 --diff=diff.txt
+-          caches:
+-            - composer
++      feature/*:
++        - step:
++            name: phpunit coverage check
++            image:
++              name: orbeji/base:7.2-xdebug-cli
++            script:
++              - composer self-update
++              - composer install
++              - vendor/bin/phpunit --configuration phpunit.xml.dist --testsuite pipelines --coverage-clover 'clover.xml'
++              - git fetch origin ${BITBUCKET_PR_DESTINATION_BRANCH}
++              - git fetch origin ${BITBUCKET_BRANCH}
++              - git fetch --all
++              - git diff origin/${BITBUCKET_PR_DESTINATION_BRANCH}...origin/${BITBUCKET_BRANCH} > diff.txt
++              - vendor/bin/pr-coverage-check check clover.xml 100 --diff=diff.txt --report=ansi
++            caches:
++              - composer
+diff --git a/composer.lock b/composer.lock
+index 7b53398..07121e0 100644
+--- a/composer.lock
++++ b/composer.lock
+@@ -190,16 +190,16 @@
+         },
+         {
+             "name": "orbeji/phpunit-pr-coverage-check",
+-            "version": "1.0.0",
++            "version": "1.0.3",
+             "source": {
+                 "type": "git",
+                 "url": "https://github.com/orbeji/phpunit-pr-coverage-check.git",
+-                "reference": "a34cdc1c0894fbdbaa5c26ee2d9e08cf89366d90"
++                "reference": "566d641dcf05bff5b92473e308c788e5b6abd5e5"
+             },
+             "dist": {
+                 "type": "zip",
+-                "url": "https://api.github.com/repos/orbeji/phpunit-pr-coverage-check/zipball/a34cdc1c0894fbdbaa5c26ee2d9e08cf89366d90",
+-                "reference": "a34cdc1c0894fbdbaa5c26ee2d9e08cf89366d90",
++                "url": "https://api.github.com/repos/orbeji/phpunit-pr-coverage-check/zipball/566d641dcf05bff5b92473e308c788e5b6abd5e5",
++                "reference": "566d641dcf05bff5b92473e308c788e5b6abd5e5",
+                 "shasum": ""
+             },
+             "require": {
+@@ -250,9 +250,9 @@
+             ],
+             "support": {
+                 "issues": "https://github.com/orbeji/phpunit-pr-coverage-check/issues",
+-                "source": "https://github.com/orbeji/phpunit-pr-coverage-check/tree/1.0.0"
++                "source": "https://github.com/orbeji/phpunit-pr-coverage-check/tree/1.0.3"
+             },
+-            "time": "2024-04-01T19:55:52+00:00"
++            "time": "2024-04-03T19:52:30+00:00"
+         },
+         {
+             "name": "phar-io/manifest",
+@@ -1833,16 +1833,16 @@
+         },
+         {
+             "name": "symfony/deprecation-contracts",
+-            "version": "v2.5.2",
++            "version": "v2.5.3",
+             "source": {
+                 "type": "git",
+                 "url": "https://github.com/symfony/deprecation-contracts.git",
+-                "reference": "e8b495ea28c1d97b5e0c121748d6f9b53d075c66"
++                "reference": "80d075412b557d41002320b96a096ca65aa2c98d"
+             },
+             "dist": {
+                 "type": "zip",
+-                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/e8b495ea28c1d97b5e0c121748d6f9b53d075c66",
+-                "reference": "e8b495ea28c1d97b5e0c121748d6f9b53d075c66",
++                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/80d075412b557d41002320b96a096ca65aa2c98d",
++                "reference": "80d075412b557d41002320b96a096ca65aa2c98d",
+                 "shasum": ""
+             },
+             "require": {
+@@ -1880,7 +1880,7 @@
+             "description": "A generic function and convention to trigger deprecation notices",
+             "homepage": "https://symfony.com",
+             "support": {
+-                "source": "https://github.com/symfony/deprecation-contracts/tree/v2.5.2"
++                "source": "https://github.com/symfony/deprecation-contracts/tree/v2.5.3"
+             },
+             "funding": [
+                 {
+@@ -1896,20 +1896,20 @@
+                     "type": "tidelift"
+                 }
+             ],
+-            "time": "2022-01-02T09:53:40+00:00"
++            "time": "2023-01-24T14:02:46+00:00"
+         },
+         {
+             "name": "symfony/phpunit-bridge",
+-            "version": "v7.0.4",
++            "version": "v7.0.6",
+             "source": {
+                 "type": "git",
+                 "url": "https://github.com/symfony/phpunit-bridge.git",
+-                "reference": "54ca13ec990a40411ad978e08d994fca6cdd865f"
++                "reference": "a014167aa1f66cb9990675840da65609d3e61612"
+             },
+             "dist": {
+                 "type": "zip",
+-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/54ca13ec990a40411ad978e08d994fca6cdd865f",
+-                "reference": "54ca13ec990a40411ad978e08d994fca6cdd865f",
++                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/a014167aa1f66cb9990675840da65609d3e61612",
++                "reference": "a014167aa1f66cb9990675840da65609d3e61612",
+                 "shasum": ""
+             },
+             "require": {
+@@ -1961,7 +1961,7 @@
+             "description": "Provides utilities for PHPUnit, especially user deprecation notices management",
+             "homepage": "https://symfony.com",
+             "support": {
+-                "source": "https://github.com/symfony/phpunit-bridge/tree/v7.0.4"
++                "source": "https://github.com/symfony/phpunit-bridge/tree/v7.0.6"
+             },
+             "funding": [
+                 {
+@@ -1977,7 +1977,7 @@
+                     "type": "tidelift"
+                 }
+             ],
+-            "time": "2024-02-08T19:22:56+00:00"
++            "time": "2024-03-19T11:57:22+00:00"
+         },
+         {
+             "name": "symfony/polyfill-ctype",
+@@ -2611,16 +2611,16 @@
+         },
+         {
+             "name": "symfony/service-contracts",
+-            "version": "v2.5.2",
++            "version": "v2.5.3",
+             "source": {
+                 "type": "git",
+                 "url": "https://github.com/symfony/service-contracts.git",
+-                "reference": "4b426aac47d6427cc1a1d0f7e2ac724627f5966c"
++                "reference": "a2329596ddc8fd568900e3fc76cba42489ecc7f3"
+             },
+             "dist": {
+                 "type": "zip",
+-                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/4b426aac47d6427cc1a1d0f7e2ac724627f5966c",
+-                "reference": "4b426aac47d6427cc1a1d0f7e2ac724627f5966c",
++                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/a2329596ddc8fd568900e3fc76cba42489ecc7f3",
++                "reference": "a2329596ddc8fd568900e3fc76cba42489ecc7f3",
+                 "shasum": ""
+             },
+             "require": {
+@@ -2674,7 +2674,7 @@
+                 "standards"
+             ],
+             "support": {
+-                "source": "https://github.com/symfony/service-contracts/tree/v2.5.2"
++                "source": "https://github.com/symfony/service-contracts/tree/v2.5.3"
+             },
+             "funding": [
+                 {
+@@ -2690,7 +2690,7 @@
+                     "type": "tidelift"
+                 }
+             ],
+-            "time": "2022-05-30T19:17:29+00:00"
++            "time": "2023-04-21T15:04:16+00:00"
+         },
+         {
+             "name": "symfony/string",
+diff --git a/phpunit.xml.dist b/phpunit.xml.dist
+index 04fb9fd..0353a3a 100644
+--- a/phpunit.xml.dist
++++ b/phpunit.xml.dist
+@@ -6,8 +6,7 @@
+          colors="true"
+          processIsolation="false"
+          stopOnFailure="false" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+-         cacheDirectory=".phpunit.cache"
+-         backupStaticProperties="false">
++         >
+     <php>
+         <ini name="display_errors" value="1"/>
+         <ini name="error_reporting" value="-1"/>
+@@ -22,13 +21,15 @@
+         <!-- ###- symfony/framework-bundle ### -->
+     </php>
+     <testsuites>
+-        <testsuite name="Project Test Suite">
++        <testsuite name="pipelines">
+             <directory>tests</directory>
+         </testsuite>
+     </testsuites>
+-    <source>
+-        <include>
+-            <directory suffix=".php">./src</directory>
+-        </include>
+-    </source>
++    <filter>
++        <whitelist processUncoveredFilesFromWhitelist="true">
++            <directory suffix=".php">src</directory>
++            <exclude>
++            </exclude>
++        </whitelist>
++    </filter>
+ </phpunit>
+diff --git a/src/Dummy.php b/src/Dummy.php
+index 8e23208..0ba9e4a 100644
+--- a/src/Dummy.php
++++ b/src/Dummy.php
+@@ -7,6 +7,10 @@ class Dummy
+     public function test() {
+         echo "hi";
+     }
++
++    public function dummy() {
++        echo "hi";
++    }
+     
+     public function fibonacci(int $n) {
+         if ($n <= 1) {
