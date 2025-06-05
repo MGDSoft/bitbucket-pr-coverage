@@ -146,15 +146,14 @@ class PrCoverageChecker extends Command
         $pullRequestDiff = $this->getPullRequestDiff($input, $isDiffFileFlow);
         [$coveragePercentage, $modifiedLinesUncovered] = $this->check($coverageReport, $pullRequestDiff);
 
-        if ($coveragePercentage < $expectedPercentage) {
-            if ($input->getOption('report')) {
-                $this->createReport($isDiffFileFlow, $coveragePercentage, $modifiedLinesUncovered, $input, $output);
-                $output->writeln('report sent');
-            } else {
-                $output->writeln('Coverage: <error>' . $coveragePercentage . '%</error>');
-            }
-            return Command::FAILURE;
+        if ($input->getOption('report')) {
+            $this->createReport($isDiffFileFlow, $coveragePercentage, $modifiedLinesUncovered, $input, $output);
+            $output->writeln('report sent');
+        } else {
+            $output->writeln('Coverage: <error>' . $coveragePercentage . '%</error>');
         }
+        return Command::FAILURE;
+
 
         return Command::SUCCESS;
     }
