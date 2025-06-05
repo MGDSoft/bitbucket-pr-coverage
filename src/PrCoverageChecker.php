@@ -239,17 +239,15 @@ class PrCoverageChecker extends Command
         if ($report === 'ansi') {
             ReportHelper::createAnsiReport($input, $output, $coveragePercentage, $modifiedLinesUncovered);
         }
-        echo "asd";
-        if (!$isDiffFileFlow) {
-            $pullRequestId = (int) $input->getOption('pullrequest-id');
 
-            Assert::integer($pullRequestId);
-            if ($report === 'comment') {
-                $this->gitService->createCoverageComment($coveragePercentage, $modifiedLinesUncovered, $pullRequestId);
-            }
-            if ($report === 'report') {
-                $this->gitService->createCoverageReport($coveragePercentage, $modifiedLinesUncovered, $pullRequestId);
-            }
+        $pullRequestId = (int) $input->getOption('pullrequest-id');
+        Assert::integer($pullRequestId);
+        if ($report === 'comment') {
+            $this->gitService->createCoverageComment($coveragePercentage, $modifiedLinesUncovered, $pullRequestId);
         }
+        if ($report === 'report') {
+            $this->gitService->createCoverageReport($coveragePercentage, $modifiedLinesUncovered, $pullRequestId);
+        }
+
     }
 }
