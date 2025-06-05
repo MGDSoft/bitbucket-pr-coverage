@@ -120,21 +120,20 @@ class PrCoverageChecker extends Command
         $this->checkDiffFileOrAPI($input);
 
         $isDiffFileFlow = $input->getOption('diff') !== null;
-        if (!$isDiffFileFlow) {
-            $provider = $input->getOption('provider');
-            Assert::string($provider);
 
-            $workspace = $input->getOption('workspace');
-            Assert::string($workspace);
+        $provider = $input->getOption('provider');
+        Assert::string($provider);
 
-            $repository = $input->getOption('repository');
-            Assert::string($repository);
+        $workspace = $input->getOption('workspace');
+        Assert::string($workspace);
 
-            $apiToken = $input->getOption('api_token');
-            Assert::string($apiToken);
+        $repository = $input->getOption('repository');
+        Assert::string($repository);
 
-            $this->gitService = $this->gitAdapterFactory->create($provider, $workspace, $repository, $apiToken);
-        }
+        $apiToken = $input->getOption('api_token');
+        Assert::string($apiToken);
+
+        $this->gitService = $this->gitAdapterFactory->create($provider, $workspace, $repository, $apiToken);
 
         if (!file_exists($coverageReportPath)) {
             throw new InvalidArgumentException('Files does not exist: ' . $coverageReportPath);
@@ -146,7 +145,7 @@ class PrCoverageChecker extends Command
 
         $pullRequestDiff = $this->getPullRequestDiff($input, $isDiffFileFlow);
         [$coveragePercentage, $modifiedLinesUncovered] = $this->check($coverageReport, $pullRequestDiff);
-        echo "A";
+
         if ($coveragePercentage < $expectedPercentage) {
             echo "B";
             if ($input->getOption('report')) {
