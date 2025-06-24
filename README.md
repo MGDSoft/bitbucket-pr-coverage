@@ -12,6 +12,13 @@ Key features:
 - Adds annotations for uncovered lines
 - Marks the report as PASSED if coverage is > 80%, otherwise FAILED
 
+![annotation](docs/annotation.png)
+![report](docs/report.png)
+
+Sometimes your code may have many lines without tests, **but you can quickly disable them**.
+
+![hide_annotation](docs/hide_annotation.png) 
+
 ## Installation
 
 ```bash
