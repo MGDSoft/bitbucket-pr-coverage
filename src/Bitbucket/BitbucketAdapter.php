@@ -91,7 +91,7 @@ class BitbucketAdapter
                 [
                     "type" => "PERCENTAGE",
                     "title" => "Coverage of new code",
-                    "value" => $coveragePercentage,
+                    "value" => round($coveragePercentage, 2),
                 ]
             ]
         ];
