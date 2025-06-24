@@ -22,7 +22,7 @@ Sometimes your code may have many lines without tests, **but you can quickly dis
 ## Installation
 
 ```bash
-composer require mgdsoftware/bitbucket-pr-coverage
+composer require mgdsoft/bitbucket-pr-coverage
 ```
 
 ## Usage
