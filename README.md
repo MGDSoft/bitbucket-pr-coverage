@@ -77,4 +77,4 @@ MIT License
 ## Credits
 
 This project is a fork of [orbeji
-/phpunit-pr-coverage-check](https://github.com/orbeji/phpunit-pr-coverage-check) with updated dependencies and code improvements. Thanks to Orbeji author for his work.
+/phpunit-pr-coverage-check](https://github.com/orbeji/phpunit-pr-coverage-check) with updated dependencies and code improvements. Thanks to the author Orbeji for their work.
