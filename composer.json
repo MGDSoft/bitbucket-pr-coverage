@@ -1,6 +1,6 @@
 {
   "name": "mgdsoftware/bitbucket-pr-coverage",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Create code coverage report in bitbucket",
   "license": "MIT",
   "require": {
