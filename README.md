@@ -30,7 +30,7 @@ composer require mgdsoft/bitbucket-pr-coverage
 ### Basic Usage
 
 ```bash
-php bin/pr-coverage coverage_report \
+php vendor/bin/pr-coverage coverage_report \
   --coverage_report_path=/path/to/clover.xml \
   --api_token=your-bitbucket-token
 ```
