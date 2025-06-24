@@ -1,6 +1,6 @@
 <?php
 
-namespace Orbeji\PrCoverageChecker\Exception;
+namespace BitBucketPRCoverage\Exception;
 
 use Exception;
 

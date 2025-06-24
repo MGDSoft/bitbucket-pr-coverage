@@ -1,1 +1,2 @@
-fork from https://github.com/orbeji/phpunit-pr-coverage-check
+fork from https://github.com/orbeji/phpunit-pr-coverage-check 
+updateed all dependencies, remove unnecessary code & cleared some parts...

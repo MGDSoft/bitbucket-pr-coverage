@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <coverage generated="1711316754">
   <project timestamp="1711316754">
-    <package name="Orbeji\PrCoverageChecker\Coverage">
+    <package name="BitBucketPRCoverage\Coverage">
       <file name="/app/src/Coverage/Parser.php">
-        <class name="Orbeji\PrCoverageChecker\Coverage\Parser" namespace="Orbeji\PrCoverageChecker\Coverage">
+        <class name="BitBucketPRCoverage\Coverage\Parser" namespace="BitBucketPRCoverage\Coverage">
           <metrics complexity="29" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="50" coveredstatements="50" elements="57" coveredelements="57"/>
         </class>
         <line num="13" type="method" name="getPrModifiedLines" visibility="public" complexity="5" crap="5" count="3"/>
@@ -66,17 +66,17 @@
         <metrics loc="140" ncloc="113" classes="1" methods="7" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="50" coveredstatements="50" elements="57" coveredelements="57"/>
       </file>
     </package>
-    <package name="Orbeji\PrCoverageChecker\Exception">
+    <package name="BitBucketPRCoverage\Exception">
       <file name="/app/src/Exception/GitApiException.php">
-        <class name="Orbeji\PrCoverageChecker\Exception\GitApiException" namespace="Orbeji\PrCoverageChecker\Exception">
+        <class name="BitBucketPRCoverage\Exception\GitApiException" namespace="BitBucketPRCoverage\Exception">
           <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
         </class>
         <metrics loc="9" ncloc="9" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </file>
     </package>
-    <package name="Orbeji\PrCoverageChecker\Git\Bitbucket">
+    <package name="BitBucketPRCoverage\Git\Bitbucket">
       <file name="/app/src/Git/Bitbucket/BitbucketAdapter.php">
-        <class name="Orbeji\PrCoverageChecker\Git\Bitbucket\BitbucketAdapter" namespace="Orbeji\PrCoverageChecker\Git\Bitbucket">
+        <class name="BitBucketPRCoverage\Git\Bitbucket\BitbucketAdapter" namespace="BitBucketPRCoverage\Git\Bitbucket">
           <metrics complexity="30" methods="14" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="163" coveredstatements="4" elements="177" coveredelements="5"/>
         </class>
         <line num="27" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
@@ -262,9 +262,9 @@
     <file name="/app/src/Git/GitAPIAdapterInterface.php">
       <metrics loc="33" ncloc="22" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
     </file>
-    <package name="Orbeji\PrCoverageChecker\Git">
+    <package name="BitBucketPRCoverage\Git">
       <file name="/app/src/Git/GitAdapterFactory.php">
-        <class name="Orbeji\PrCoverageChecker\Git\GitAdapterFactory" namespace="Orbeji\PrCoverageChecker\Git">
+        <class name="BitBucketPRCoverage\Git\GitAdapterFactory" namespace="BitBucketPRCoverage\Git">
           <metrics complexity="6" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="17" coveredstatements="17" elements="18" coveredelements="18"/>
         </class>
         <line num="15" type="method" name="create" visibility="public" complexity="6" crap="6" count="6"/>
@@ -288,9 +288,9 @@
         <metrics loc="46" ncloc="42" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="17" coveredstatements="17" elements="18" coveredelements="18"/>
       </file>
     </package>
-    <package name="Orbeji\PrCoverageChecker\Git\GitHub">
+    <package name="BitBucketPRCoverage\Git\GitHub">
       <file name="/app/src/Git/GitHub/GitHubAdapter.php">
-        <class name="Orbeji\PrCoverageChecker\Git\GitHub\GitHubAdapter" namespace="Orbeji\PrCoverageChecker\Git\GitHub">
+        <class name="BitBucketPRCoverage\Git\GitHub\GitHubAdapter" namespace="BitBucketPRCoverage\Git\GitHub">
           <metrics complexity="13" methods="7" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="67" coveredstatements="4" elements="74" coveredelements="5"/>
         </class>
         <line num="26" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
@@ -370,9 +370,9 @@
         <metrics loc="167" ncloc="143" classes="1" methods="7" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="67" coveredstatements="4" elements="74" coveredelements="5"/>
       </file>
     </package>
-    <package name="Orbeji\PrCoverageChecker">
+    <package name="BitBucketPRCoverage">
       <file name="/app/src/PrCoverageChecker.php">
-        <class name="Orbeji\PrCoverageChecker\PrCoverageChecker" namespace="Orbeji\PrCoverageChecker">
+        <class name="BitBucketPRCoverage\PrCoverageChecker" namespace="BitBucketPRCoverage">
           <metrics complexity="10" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="76" coveredstatements="74" elements="80" coveredelements="77"/>
         </class>
         <line num="33" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
@@ -458,7 +458,7 @@
         <metrics loc="163" ncloc="146" classes="1" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="76" coveredstatements="74" elements="80" coveredelements="77"/>
       </file>
       <file name="/app/src/ReportHelper.php">
-        <class name="Orbeji\PrCoverageChecker\ReportHelper" namespace="Orbeji\PrCoverageChecker">
+        <class name="BitBucketPRCoverage\ReportHelper" namespace="BitBucketPRCoverage">
           <metrics complexity="6" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="44" coveredstatements="44" elements="46" coveredelements="46"/>
         </class>
         <line num="10" type="method" name="createGithubHtmlReport" visibility="public" complexity="3" crap="3" count="3"/>

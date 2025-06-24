@@ -1,6 +1,6 @@
 <?php
 
-namespace Orbeji\PrCoverageChecker\Coverage;
+namespace BitBucketPRCoverage\Coverage;
 
 use Exception;
 use SimpleXMLElement;

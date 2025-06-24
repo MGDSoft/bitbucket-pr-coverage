@@ -3,18 +3,13 @@
 
 include $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
 
-use Orbeji\PrCoverageChecker\Coverage\Parser;
-use Orbeji\PrCoverageChecker\Git\GitAdapterFactory;
-use Orbeji\PrCoverageChecker\PrCoverageChecker;
 use Symfony\Component\Console\Application;
 
 $application = new Application();
 
-// ... register commands
 $application->add(
-    new PrCoverageChecker(
-        new Parser(),
-        new GitAdapterFactory()
+    new \BitBucketPRCoverage\PrCoverageCheckerCommand(
+        new \BitBucketPRCoverage\Coverage\Parser()
     )
 );
 

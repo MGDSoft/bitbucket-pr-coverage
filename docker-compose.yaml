@@ -1,8 +1,0 @@
-version: '3.7'
-services:
-  test:
-    user: "${DOCKERUID}:${DOCKERGID}"
-    image: orbeji/base:7.2-xdebug
-    volumes:
-      - ./:/app
-      - ./coverage:/opt/phpstorm-coverage
