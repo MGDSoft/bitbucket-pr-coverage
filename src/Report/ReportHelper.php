@@ -1,6 +1,6 @@
 <?php
 
-namespace BitBucketPRCoverage;
+namespace BitBucketPRCoverage\Report;
 
 use Symfony\Component\Console\Helper\TableCell;
 use Symfony\Component\Console\Input\InputInterface;

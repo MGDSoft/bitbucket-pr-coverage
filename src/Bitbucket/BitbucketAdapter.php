@@ -1,9 +1,7 @@
 <?php
 
-namespace BitBucketPRCoverage\Git\Bitbucket;
+namespace BitBucketPRCoverage\Bitbucket;
 
-use BitBucketPRCoverage\Exception\GitApiException;
-use BitBucketPRCoverage\ReportHelper;
 use stdClass;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -24,9 +22,6 @@ class BitbucketAdapter
         );
     }
 
-    /**
-     * @throws GitApiException
-     */
     private function getCommitIdFromPullRequest(): string
     {
         $response = $this->client->request('GET', "pullrequests/$this->pullRequestId/");
@@ -37,22 +32,17 @@ class BitbucketAdapter
 
     /**
      * @param array<string,array<int>> $modifiedLinesUncovered
-     * @throws GitApiException
      */
     public function createCoverageReport(
         float $coveragePercentage,
         array $modifiedLinesUncovered,
-        int $pullRequestId
     ): void {
-        $commitId = $this->getCommitIdFromPullRequest($pullRequestId);
+        $commitId = $this->getCommitIdFromPullRequest();
         $this->deleteOutdatedCoverageReports($commitId);
         $idReport = $this->createReport($coveragePercentage, $commitId);
         $this->addAnnotations($idReport, $modifiedLinesUncovered, $commitId);
     }
 
-    /**
-     * @throws GitApiException
-     */
     private function deleteOutdatedCoverageReports(string $commitId): void
     {
         $coverageReports = $this->getCoverageReports($commitId);
@@ -62,15 +52,14 @@ class BitbucketAdapter
     }
 
     /**
-     * @return array<stdClass>
-     * @throws GitApiException
+     * @return array
      */
     private function getCoverageReports(string $commitId): array
     {
         $reports = $this->listReports($commitId);
         $coverageReports = [];
         foreach ($reports as $report) {
-            if ($report->report_type === 'COVERAGE') {
+            if ($report['report_type'] === 'COVERAGE') {
                 $coverageReports[] = $report;
             }
         }
@@ -83,12 +72,9 @@ class BitbucketAdapter
         return $response->toArray()['values'];
     }
 
-    /**
-     * @throws GitApiException
-     */
-    private function deleteReport(string $commitId, stdClass $coverageReport): void
+    private function deleteReport(string $commitId, array $coverageReport): void
     {
-        $this->client->request('DELETE', "commit/$commitId/reports/".$coverageReport->external_id);
+        $this->client->request('DELETE', "commit/$commitId/reports/".$coverageReport['external_id']);
     }
 
     private function createReport(float $coveragePercentage, string $commitId): string
@@ -119,7 +105,6 @@ class BitbucketAdapter
 
     /**
      * @param array<string,array<int>> $modifiedLinesUncovered
-     * @throws GitApiException
      */
     private function addAnnotations(?string $idReport, array $modifiedLinesUncovered, string $commitId): void
     {

@@ -7,10 +7,6 @@ use Symfony\Component\Console\Application;
 
 $application = new Application();
 
-$application->add(
-    new \BitBucketPRCoverage\PrCoverageCheckerCommand(
-        new \BitBucketPRCoverage\Coverage\Parser()
-    )
-);
+$application->add(new \BitBucketPRCoverage\PrCoverageCommand());
 
 $application->run();

@@ -74,9 +74,9 @@
         <metrics loc="9" ncloc="9" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
       </file>
     </package>
-    <package name="BitBucketPRCoverage\Git\Bitbucket">
+    <package name="BitBucketPRCoverage\Bitbucket">
       <file name="/app/src/Git/Bitbucket/BitbucketAdapter.php">
-        <class name="BitBucketPRCoverage\Git\Bitbucket\BitbucketAdapter" namespace="BitBucketPRCoverage\Git\Bitbucket">
+        <class name="BitBucketPRCoverage\Bitbucket\BitbucketAdapter" namespace="BitBucketPRCoverage\Bitbucket">
           <metrics complexity="30" methods="14" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="163" coveredstatements="4" elements="177" coveredelements="5"/>
         </class>
         <line num="27" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>

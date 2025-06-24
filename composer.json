@@ -1,7 +1,7 @@
 {
   "name": "shopadvizor/bitbucket-pr-coverage",
   "version": "0.0.0",
-  "description": "Check the code coverage of a PR using the clover report of phpunit",
+  "description": "Create code coverage report in bitbucket",
   "license": "MIT",
   "require": {
     "php": "^8.3",
@@ -12,8 +12,11 @@
     "symfony/console": "^6.0|^7.0",
     "symfony/process": "^6.0|^7.0",
     "webmozart/assert": "^1.11",
-    "ext-http": "*"
+    "composer-runtime-api": "^2.2"
   },
+  "bin": [
+    "bin/pr-coverage"
+  ],
   "autoload": {
     "psr-4": {
       "BitBucketPRCoverage\\": "src"
