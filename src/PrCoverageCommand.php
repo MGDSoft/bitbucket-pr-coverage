@@ -21,7 +21,7 @@ class PrCoverageCommand extends Command
             ->setName('coverage_report')
             ->setDescription('Generate report')
             ->addOption('coverage_report_path',null,InputOption::VALUE_REQUIRED,'Path to coverage report')
-            ->addOption('git_branch_diff',null,InputOption::VALUE_OPTIONAL,'Path to diff file', 'origin/develop')
+            ->addOption('git_branch_diff',null,InputOption::VALUE_OPTIONAL,'Path to diff file', 'origin/'.getenv('BITBUCKET_PR_DESTINATION_BRANCH').'..origin/'.getenv('BITBUCKET_BRANCH'))
             ->addOption('pullrequest_id',null,InputOption::VALUE_REQUIRED,'Identifier of the pull request to be checked', getenv('BITBUCKET_PR_ID'))
             ->addOption('workspace',null,InputOption::VALUE_REQUIRED,'Workspace of the repository in Bitbucket or owner in Github', getenv('BITBUCKET_WORKSPACE'))
             ->addOption('repository',null,InputOption::VALUE_REQUIRED,'Repository name', getenv('BITBUCKET_REPO_SLUG'))
@@ -42,7 +42,7 @@ class PrCoverageCommand extends Command
             throw new InvalidArgumentException('Cannot read file: ' . $coverageReportPath);
         }
 
-        $pullRequestDiff = (new GitDiffGenerator())->__invoke($input->getOption('git_branch_diff'));
+        $pullRequestDiff = (new GitDiffGenerator())->__invoke($input->getOption('git_branch_diff'), $output);
         [$coveragePercentage, $modifiedLinesUncovered] = (new CalcCoverage())->__invoke($coverageReport, $pullRequestDiff);
 
         ReportHelper::createAnsiReport($input, $output, $coveragePercentage, $modifiedLinesUncovered);
