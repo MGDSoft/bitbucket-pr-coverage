@@ -43,16 +43,16 @@ class PrCoverageCommand extends Command
         }
 
         $pullRequestDiff = (new GitDiffGenerator())->__invoke($input->getOption('git_branch_diff'), $output);
-        [$coveragePercentage, $modifiedLinesUncovered] = (new CalcCoverage())->__invoke($coverageReport, $pullRequestDiff);
+        $calcCoverageOutDto = (new CalcCoverage())->__invoke($coverageReport, $pullRequestDiff);
 
-        ReportHelper::createAnsiReport($input, $output, $coveragePercentage, $modifiedLinesUncovered);
+        ReportHelper::createAnsiReport($input, $output, $calcCoverageOutDto);
         $bitbucketAdapter = new BitbucketAdapter(
             $input->getOption('workspace'),
             $input->getOption('repository'),
             $input->getOption('api_token'),
             $input->getOption('pullrequest_id'),
         );
-        $bitbucketAdapter->createCoverageReport($coveragePercentage, $modifiedLinesUncovered);
+        $bitbucketAdapter->createCoverageReport($calcCoverageOutDto);
 
         return Command::SUCCESS;
     }

@@ -11,7 +11,7 @@ class CalcCoverage
         $this->parser = new Parser();
     }
 
-    public function __invoke(string $coverageReport,string $pullRequestDiff): array
+    public function __invoke(string $coverageReport,string $pullRequestDiff): CalcCoverageOutDto
     {
         [$uncoveredLines, $coveredLines] = $this->parser->getCoverageLines($coverageReport);
 
@@ -22,6 +22,11 @@ class CalcCoverage
 
         $coveragePercentage = $this->parser->calculateCoveragePercentage($modifiedLinesUncovered, $modifiedLines);
 
-        return [$coveragePercentage, $modifiedLinesUncovered];
+        return new CalcCoverageOutDto(
+            $coveragePercentage,
+            $modifiedLinesUncovered,
+            $this->parser->getCoverageTotal($coverageReport),
+            $this->parser->avgComplexityTotal($coverageReport),
+        );
     }
 }

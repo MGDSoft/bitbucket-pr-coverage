@@ -46,6 +46,30 @@ class Parser
         return [$uncoveredLines, $coveredLines];
     }
 
+    public function getCoverageTotal(string $coverageReport): float
+    {
+        $coverage = new SimpleXMLElement($coverageReport);
+        $metrics = $coverage->project->metrics;
+
+        $totalStatements = (int) $metrics['statements'];
+        $coveredStatements = (int) $metrics['coveredstatements'];
+
+        return round($coveredStatements / $totalStatements * 100, 2);
+    }
+
+    public function avgComplexityTotal(string $coverageReport): float
+    {
+        $xml = new SimpleXMLElement($coverageReport);
+
+        $classes = $xml->xpath(
+            '//class[not(contains(@name, "Test"))]/metrics/@complexity'
+        ) ?: [];
+
+        $totalComplexity = array_sum(array_map(fn($n) => (int) $n->complexity, $classes));
+
+        return round(count($classes)  ? ($totalComplexity / count($classes)) * 9 : 0, 2);
+    }
+
     /**
      * @return array<int, array<string, array<int, int>>>
      */
@@ -152,7 +176,7 @@ class Parser
         if ($countModifiedLines === 0) {
             return 100.0;
         }
-        return 100 - (($countModifiedLinesUncovered) / ($countModifiedLines)) * 100;
+        return round(100 - (($countModifiedLinesUncovered) / ($countModifiedLines)) * 100, 2);
     }
 
     /**

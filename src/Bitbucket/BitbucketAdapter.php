@@ -2,6 +2,7 @@
 
 namespace BitBucketPRCoverage\Bitbucket;
 
+use BitBucketPRCoverage\Coverage\CalcCoverageOutDto;
 use stdClass;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -34,13 +35,12 @@ class BitbucketAdapter
      * @param array<string,array<int>> $modifiedLinesUncovered
      */
     public function createCoverageReport(
-        float $coveragePercentage,
-        array $modifiedLinesUncovered,
+        CalcCoverageOutDto $calcCoverageOutDto,
     ): void {
         $commitId = $this->getCommitIdFromPullRequest();
         $this->deleteOutdatedCoverageReports($commitId);
-        $idReport = $this->createReport($coveragePercentage, $commitId);
-        $this->addAnnotations($idReport, $modifiedLinesUncovered, $commitId);
+        $idReport = $this->createReport($calcCoverageOutDto, $commitId);
+        $this->addAnnotations($idReport, $calcCoverageOutDto, $commitId);
     }
 
     private function deleteOutdatedCoverageReports(string $commitId): void
@@ -77,7 +77,7 @@ class BitbucketAdapter
         $this->client->request('DELETE', "commit/$commitId/reports/".$coverageReport['external_id']);
     }
 
-    private function createReport(float $coveragePercentage, string $commitId): string
+    private function createReport(CalcCoverageOutDto $calcCoverageOutDto, string $commitId): string
     {
         $idReport = uniqid();
 
@@ -86,12 +86,22 @@ class BitbucketAdapter
             "title" => "Coverage report",
             "details" => "Coverage report of the modified/created code",
             "report_type" => "COVERAGE",
-            "result" => $coveragePercentage <= 80 ? "FAILED" : "PASSED",
+            "result" => $calcCoverageOutDto->coveragePercentage <= 80 ? "FAILED" : "PASSED",
             "data" => [
                 [
                     "type" => "PERCENTAGE",
-                    "title" => "Coverage of new code",
-                    "value" => round($coveragePercentage, 2),
+                    "title" => "Coverage Total",
+                    "value" => $calcCoverageOutDto->coverageTotal,
+                ],
+                [
+                    "type" => "PERCENTAGE",
+                    "title" => "Total Complexity",
+                    "value" => $calcCoverageOutDto->avgComplexityTotal,
+                ],
+                [
+                    "type" => "PERCENTAGE",
+                    "title" => "Coverage new code",
+                    "value" => $calcCoverageOutDto->coveragePercentage,
                 ]
             ]
         ];
@@ -106,14 +116,14 @@ class BitbucketAdapter
     /**
      * @param array<string,array<int>> $modifiedLinesUncovered
      */
-    private function addAnnotations(?string $idReport, array $modifiedLinesUncovered, string $commitId): void
+    private function addAnnotations(?string $idReport, CalcCoverageOutDto $calcCoverageOutDto, string $commitId): void
     {
-        if (!$modifiedLinesUncovered) {
+        if (!$calcCoverageOutDto->modifiedLinesUncovered) {
             return;
         }
 
         $body = [];
-        foreach ($modifiedLinesUncovered as $file => $lines) {
+        foreach ($calcCoverageOutDto->modifiedLinesUncovered as $file => $lines) {
             foreach ($lines as $line) {
                 $body[] = [
                     "external_id" => uniqid(),

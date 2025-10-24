@@ -2,6 +2,7 @@
 
 namespace BitBucketPRCoverage\Report;
 
+use BitBucketPRCoverage\Coverage\CalcCoverageOutDto;
 use Symfony\Component\Console\Helper\TableCell;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -55,13 +56,14 @@ class ReportHelper
     public static function createAnsiReport(
         InputInterface $input,
         OutputInterface $output,
-        float $coveragePercentage,
-        array $modifiedLinesUncovered
+        CalcCoverageOutDto $calcCoverageOutDto
     ): void {
-        $output->writeln('Coverage: <error>' . $coveragePercentage . '%</error>');
+        $output->writeln('Coverage Diff: <info>' . $calcCoverageOutDto->coveragePercentage . '%</info>');
+        $output->writeln('Coverage Total: <info>' . $calcCoverageOutDto->coverageTotal . '%</info>');
+        $output->writeln('Coverage AvgComplexity: <info>' . $calcCoverageOutDto->avgComplexityTotal . '%</info>');
         $symfonyStyle = new SymfonyStyle($input, $output);
         $rows = [];
-        foreach ($modifiedLinesUncovered as $file => $lines) {
+        foreach ($calcCoverageOutDto->modifiedLinesUncovered as $file => $lines) {
             $rows[] = [
                 new TableCell($file),
                 new TableCell(implode(', ', $lines)),
